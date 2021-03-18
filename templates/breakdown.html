@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Breakdown
+{% endblock %}
+
+{% block main %}
+<h2 class="breakdown-title">Current earnings</h2>
+
+<table class="table table-striped">
+    <tr>
+        <td><strong>Period</strong></td>
+        <td><strong>Rate</strong></td>
+        <td><strong>Days</strong></td>
+        <td><strong>Interest</strong></td>
+        <td><strong>Cumulative Interest</strong></td>
+        <td><strong>Cumulative Funds</strong></td>
+    </tr>
+    {% for change in range(earnings | length) %}
+    <tr>
+        <td>{{ earnings[change]['start_date'] }} - {{ earnings[change]['end_date']  }}</td>
+        <td>{{ earnings[change]['rate'] }}</td>
+        <td>{{ earnings[change]['period'] }}</td>
+        <td>{{ earnings[change]['interest'] | gbp }}</td>
+        <td>{{ earnings[change]['cum_interest'] | gbp }}</td>
+        <td>{{ earnings[change]['cum_funds'] | gbp }}</td>
+    </tr>
+    {% endfor %}
+    <tr>
+        <td><strong>Total</strong></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><strong>{{ earnings[(earnings | length)-1 ]['cum_interest'] | gbp }}</strong></td>
+        <td><strong>{{ earnings[(earnings | length)-1 ]['cum_funds'] | gbp }}</strong></td>
+    </tr>
+</table>
+
+{% if future_earnings %}
+<h2 class="breakdown-title">Future earnings</h2>
+<table class="table table-striped">
+    <tr>
+        <td><strong>Period</strong></td>
+        <td><strong>Rate</strong></td>
+        <td><strong>Days</strong></td>
+        <td><strong>Interest</strong></td>
+        <td><strong>Cumulative Interest</strong></td>
+        <td><strong>Cumulative Funds</strong></td>
+    </tr>
+    {% for change in range(future_earnings | length) %}
+    <tr>
+        <td>{{ future_earnings[change]['start_date'] }} - {{ future_earnings[change]['end_date'] }}</td>
+        <td>{{ future_earnings[change]['rate'] }}</td>
+        <td>{{ future_earnings[change]['period'] }}</td>
+        <td>{{ future_earnings[change]['interest'] | gbp }}</td>
+        <td>{{ future_earnings[change]['cum_interest'] | gbp }}</td>
+        <td>{{ future_earnings[change]['cum_funds'] | gbp }}</td>
+    </tr>
+    {% endfor %}
+    <tr>
+        <td><strong>Total</strong></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><strong>{{ future_earnings[(future_earnings | length)-1 ]['cum_interest'] | gbp }}</strong></td>
+        <td><strong>{{ future_earnings[(future_earnings | length)-1 ]['cum_funds'] |gbp }}</strong></td>
+    </tr>
+</table>
+{% endif%}
+<a class="btn btn-secondary btm-link" href="/summary">Back to Summary</a><br>
+<a class="btn btn-secondary btm-link" href="/">Check another notice account</a>
+
+
+
+{% endblock %}

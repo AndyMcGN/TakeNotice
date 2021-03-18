@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add a product
+{% endblock %}
+
+{% block main %}
+<form action="/add" method="post">
+    <table class="center">
+        <tr>
+            <td>
+                Product name
+            </td>
+            <td>
+                <input type="text" name="product_name">
+            </td>
+        </tr>
+        <tr>
+            <td>Length of Notice</td>
+            <td><input type="number" name="notice_length"></td>
+        </tr>
+
+
+        <table id="table_rows" class="center">
+            <thead>
+                <tr>
+                    <td></td>
+                    <td>
+                        Date
+                    </td>
+                    <td>
+                        Rate
+                    </td>
+                </tr>
+
+            </thead>
+            <tr>
+                <td>Start Date</td>
+                <td><input type="date" name="start_date"></td>
+                <td id="firstAddRow"><input type="number" step="0.01" placeholder="rate" name="start_rate"></td>
+                <td><button class="add-btn btn plus-minus-btn" type="button"onclick="addRow()"><i class="fas fa-plus-circle"></i></button>
+                </td>
+
+            </tr>
+        </table>
+        <tr><td><button class="btn btn-info" type="submit">Add!</button></td></tr>
+    </table>
+</form>
+
+{% endblock %}

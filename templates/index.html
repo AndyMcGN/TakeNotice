@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+
+ <form action="/" method="post" class="form-inline">
+    <table class="center">
+
+        <tr>
+            <td>
+                Investment Amount:
+            </td>
+            <td>
+                <input type="number" name="amount">
+            </td>
+        </tr>
+        <tr>
+            <td>Product</td>
+            <td>
+                <select name="product_id" placeholder="Add a product">
+                    {% if product_list | length == 0 %}
+                    <option>Add a product!</option>
+                    {% endif %}
+                    {% for row in product_list %}
+                         <option value="{{ row.product_id }}">{{ row.product_name }}</option>
+                    {% endfor %}
+
+                </select>
+            </td>
+        <tr>
+            <td>Investment date:</td>
+            <td><input id="investDate" type="date" name="start"></td>
+        </tr>
+
+        <tr>
+            <td>Is this a matured product?</td>
+            <td class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label id="showWithdrawalBtn" class="btn btn-info">
+                        <input type="radio" name="matured_or_not" value="True" onclick="showWithdrawal()">Yes
+                    </label>
+                    <label id="showNotWithdrawalBtn" class="btn btn-info">
+                        <input type="radio" name="matured_or_not" value="False" onclick="showNotWithdrawn()">No
+                    </label>
+            </td>
+        </tr>
+
+        <tr id="withdrawal" style="display: none;">
+            <td>Withdrawal date:</td>
+            <td><input id="withdrawalDate" type="date" name="withdrawal"></td>
+        </tr>
+        <tr id="notWithdrawn" style="display: none;">
+                <td>Have you entered your notice period?</td>
+                <td class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label id="showNoticeBtn" class="btn btn-info">
+                            <input type="radio" name="notice_or_not" value="True" onclick="showNoticeDate()">Yes
+                        </label>
+                        <label id="showNoNoticeBtn" class="btn btn-info">
+                            <input type="radio" name="notice_or_not" value="False" onclick="noNoticeDate()">No
+                        </label>
+                </td>
+        </tr>
+        <tr  id="noticeDate" style="display:none;">
+            <td>When did you give notice?</td>
+            <td><input id="noticeGivenDate" type = "date" name="notice_date"></td>
+        </tr>
+
+        <tr>
+        <td colspan="2"><button class="btn btn-primary" >Go!</button></td>
+        </tr>
+    </table>
+</form>
+    <tr><td><a class="btn btn-secondary" href="/add">Add a New Product</a></td></tr>
+{% endblock %}

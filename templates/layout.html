@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <script src="https://kit.fontawesome.com/6cfa024a17.js" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        <script src="/static/ratesjs.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"></head>
+        <link rel="stylesheet" href="/static/styles.css">
+        <title>{% block title %}{% endblock %}</title>
+
+    </head>
+    <body class="container">
+        <header>
+            <div id="money-header">
+            </div>
+                <a href="/"><img id="title" src="static/TakeNotice.png"></a>
+        </header>
+
+        <main class="container full-height">
+
+
+            {% block main %}{% endblock %}
+        </main>
+    </body>
+</html>

@@ -1,0 +1,105 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block main %}
+
+{% if status == 'withdrawn' %}
+<table class="table" id="results-table">
+    <tr>
+        <td>
+            Interest earnt:
+        </td>
+        <td>
+            {{ earnings[(earnings | length)-1 ]['cum_interest'] | gbp }}
+        </td>
+    </tr>
+    <tr>
+        <td>Total fund upon withdrawal:</td>
+        <td> {{ earnings[(earnings | length)-1 ]['cum_funds'] | gbp }}</td>
+    </tr>
+</table>
+{% elif status == 'unfinished_notice' %}
+
+<table class="table">
+    <tr>
+        <td>
+            Interest earnt to date:
+        </td>
+        <td>
+            {{ earnings[(earnings | length)-1 ]['cum_interest'] | gbp }}
+        </td>
+    </tr>
+    <tr>
+        <td>Current Balance:</td>
+        <td>{{ earnings[(earnings | length)-1 ]['cum_funds'] | gbp }}</td>
+    </tr>
+    <tr>
+        <td>End of notice period:</td>
+        <td>{{ future_earnings[(future_earnings | length)-1 ]['end_date'] }}</td>
+    </tr>
+    <tr>
+        <td>Interest at end of notice period:</td>
+        <td>{{ future_earnings[(future_earnings | length)-1 ]['cum_interest'] | gbp }}</td>
+    </tr>
+    <tr>
+        <td>
+            Balance at end of notice period:
+        </td>
+        <td>
+            {{ future_earnings[(future_earnings | length)-1 ]['cum_funds'] | gbp }}
+        </td>
+    </tr>
+</table>
+{% else %}
+
+<table class="table">
+    <tr>
+        <td>
+            Interest earnt to date:
+        </td>
+        <td>
+            {{ earnings[(earnings | length)-1 ]['cum_interest'] | gbp }}
+        </td>
+    </tr>
+    <tr>
+        <td>Current Balance:</td>
+        <td>{{ earnings[(earnings | length)-1 ]['cum_funds'] | gbp }}</td>
+    </tr>
+    <tr>
+        <td>End of notice period if submitted today:</td>
+        <td>{{ future_earnings[(future_earnings | length)-1 ]['end_date'] }}</td>
+    </tr>
+    <tr>
+        <td>Interest at end of notice period is submitted today:</td>
+        <td>{{ future_earnings[(future_earnings | length)-1 ]['cum_interest'] | gbp }}</td>
+    </tr>
+    <tr>
+        <td>
+            Balance at end of notice period if submitted today:
+        </td>
+        <td>
+            {{ future_earnings[(future_earnings | length)-1 ]['cum_funds'] | gbp }}
+        </td>
+    </tr>
+</table>
+{% endif %}
+
+
+
+<!-- <p><strong>Please Note! These are values are estimates made by our customer services and are merely intended to give the approximate amount you can expect to receive
+upon maturity of your product. Due to nuances in exactly how and when our partners calculate interest, we expect these estimates to be slightly off (around 0.2% of the interest value, which may be more or less than
+the values shown here. These figures are in no way a promise of the amount you will receive. </strong></p>
+-->
+<a class="btn btn-secondary btm-link" href="/breakdown">See the breakdown of your interest</a><br>
+<a class="btn btn-secondary btm-link" href="/">Check another notice account</a>
+
+
+
+
+
+
+
+{% endblock %}
